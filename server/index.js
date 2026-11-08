@@ -10,7 +10,7 @@ const notificationRoutes = require('./routes/notifications')
 const app = express()
 const PORT = process.env.PORT || 5000
 
-// CORS — allow local dev and the deployed Netlify frontend
+// CORS — allow local dev + any Vercel/Netlify frontend set via env var
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
@@ -18,10 +18,14 @@ const allowedOrigins = [
   'https://campuscare-main.netlify.app',
 ]
 
+// Add the production frontend URL from env if set (e.g. https://campuscare.vercel.app)
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL)
+}
+
 app.use(
   cors({
     origin(origin, callback) {
-      // allow same-origin / no-origin requests (curl etc.) and whitelisted origins
       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true)
       } else {
