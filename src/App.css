@@ -1811,3 +1811,698 @@ p {
     padding: 16px;
   }
 }
+
+
+/* =========================================================================
+   Login Page — Role Tabs
+   ========================================================================= */
+
+.login-card {
+  max-width: 480px;
+}
+
+/* Tab row */
+.login-tabs {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.login-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 14px;
+  background: var(--gray-light);
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease);
+}
+
+.login-tab + .login-tab {
+  border-left: 1.5px solid var(--border);
+}
+
+.login-tab-icon {
+  font-size: 1rem;
+}
+
+.login-tab-active {
+  background: var(--blue);
+  color: #fff;
+}
+
+.login-tab-admin.login-tab-active {
+  background: #1e293b;
+  color: #fff;
+}
+
+/* Role hint banner */
+.role-hint {
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.role-hint-student {
+  background: var(--blue-light);
+  border: 1px solid #bfdbfe;
+  color: var(--blue-darker);
+}
+
+.role-hint-admin {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+/* Admin sign-in button */
+.btn-admin {
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+
+.btn-admin:hover {
+  background: #0f172a;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+  transform: translateY(-1px);
+}
+
+.btn-admin:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Admin brand icon */
+.brand-icon-admin {
+  background: linear-gradient(135deg, #1e293b, #334155) !important;
+}
+
+/* =========================================================================
+   Dashboard — Shared Hero + New Components
+   ========================================================================= */
+
+/* Hero banner */
+.db-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.db-hero-student {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+}
+
+.db-hero-admin {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid #334155;
+}
+
+.db-hero-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Avatar circle */
+.db-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.db-avatar-student {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+}
+
+.db-avatar-admin {
+  background: #f59e0b;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(245,158,11,0.35);
+}
+
+.db-role-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 3px;
+}
+
+.db-role-label-admin {
+  color: #fbbf24;
+}
+
+.db-welcome {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.db-hero-admin .db-welcome {
+  color: #f8fafc;
+}
+
+.db-meta {
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.db-hero-admin .db-meta {
+  color: #94a3b8;
+}
+
+.db-meta-admin {
+  color: #64748b !important;
+}
+
+.db-cta-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Admin hero right side badges */
+.db-hero-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.db-notif-badge {
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.35);
+  color: #fbbf24;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.db-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(22,163,74,0.12);
+  border: 1px solid rgba(22,163,74,0.3);
+  color: #4ade80;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.db-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* =========================================================================
+   Dashboard — Progress Bars
+   ========================================================================= */
+
+.db-progress-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.db-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.db-progress-pct {
+  color: var(--green);
+}
+
+.db-progress-bar {
+  height: 10px;
+  background: var(--gray-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.db-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--green));
+  border-radius: 999px;
+  transition: width 0.6s ease;
+  min-width: 4px;
+}
+
+/* Admin summary bars */
+.db-summary-bars {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.db-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.db-summary-label {
+  width: 130px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.db-mini-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--gray-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.db-mini-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s ease;
+  min-width: 3px;
+}
+
+.db-mini-fill-green {
+  background: linear-gradient(90deg, var(--blue), var(--green));
+}
+
+.db-mini-fill-yellow {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.db-summary-pct {
+  width: 40px;
+  text-align: right;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* =========================================================================
+   Dashboard — Section Heading Row
+   ========================================================================= */
+
+.db-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.db-section-head h2 {
+  margin-bottom: 0;
+}
+
+/* =========================================================================
+   Student Dashboard — Filter Tabs + Complaint Cards
+   ========================================================================= */
+
+.db-filter-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.db-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
+}
+
+.db-filter-btn:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: var(--blue-light);
+}
+
+.db-filter-btn-active {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
+.db-filter-btn-active:hover {
+  background: var(--blue-dark);
+  color: #fff;
+}
+
+.db-filter-count {
+  background: rgba(255,255,255,0.22);
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+}
+
+.db-filter-btn:not(.db-filter-btn-active) .db-filter-count {
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
+/* Complaint cards list */
+.db-complaint-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.db-complaint-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+}
+
+.db-complaint-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #bfdbfe;
+}
+
+.db-ci-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.db-ci-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.db-ci-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-ci-desc {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+/* Admin response block */
+.db-ci-response {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-top: 8px;
+}
+
+.db-ci-response-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--green);
+  margin-bottom: 3px;
+}
+
+.db-ci-response p {
+  font-size: 0.84rem;
+  color: #166534;
+  line-height: 1.45;
+}
+
+.db-ci-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.db-ci-category {
+  background: var(--blue-light);
+  color: var(--blue);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-sm);
+  padding: 3px 10px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.db-ci-time {
+  font-size: 0.76rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* =========================================================================
+   Dashboard — Empty / Loading states
+   ========================================================================= */
+
+.db-empty {
+  text-align: center;
+  padding: 52px 24px;
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.db-empty-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.db-empty h3 {
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.db-empty p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.db-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.db-spinner {
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================================================
+   Dashboard — Quick Actions
+   ========================================================================= */
+
+.db-quick-links {
+  margin-top: 36px;
+}
+
+.db-quick-links h2 {
+  margin-bottom: 14px;
+}
+
+.db-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.db-quick-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+  cursor: pointer;
+  color: inherit;
+}
+
+.db-quick-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: #bfdbfe;
+}
+
+.db-quick-icon {
+  font-size: 1.6rem;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-light);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.db-quick-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+
+.db-quick-card p {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* =========================================================================
+   Responsive — Dashboard hero and new elements
+   ========================================================================= */
+
+@media (max-width: 700px) {
+  .db-hero {
+    padding: 20px 20px;
+  }
+
+  .db-hero-left {
+    gap: 12px;
+  }
+
+  .db-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
+
+  .db-welcome {
+    font-size: 1.35rem;
+  }
+
+  .login-tabs {
+    flex-direction: row;
+  }
+
+  .db-complaint-item {
+    flex-direction: column;
+  }
+
+  .db-ci-right {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .db-hero-badges {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .db-summary-label {
+    width: 110px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Field hint text (used under inputs for guidance) */
+.field-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 5px;
+  line-height: 1.45;
+}

@@ -1,31 +1,23 @@
 /**
- * Securely create an admin account from the command line.
+ * Create an admin account from the command line.
+ * Admins are stored in the "admins" collection (separate from "students").
  *
  * Usage:
  *   npm run create-admin -- "Admin Name" admin@campus.edu "Admin@123"
- *
  *   node scripts/createAdmin.js "Campus Admin" admin@campus.edu "Admin@123"
- *
- * If an admin already exists with the given email the password is updated.
- * If a *student* exists with the email the script refuses and asks for a
- * different email (admins are never created through public registration).
  */
 require('dotenv').config()
 const mongoose = require('mongoose')
-const User = require('../models/User')
+const Admin = require('../models/Admin')
+const Student = require('../models/Student')
 
 async function createAdmin() {
-  const name = process.argv[2]
-  const email = process.argv[3]
+  const name     = process.argv[2]
+  const email    = process.argv[3]
   const password = process.argv[4]
 
   if (!name || !email || !password) {
-    console.error(
-      'Usage: npm run create-admin -- "<Admin Name>" admin@example.com "password"'
-    )
-    console.error(
-      '  e.g. npm run create-admin -- "Campus Admin" admin@campus.edu "Admin@123"'
-    )
+    console.error('Usage: npm run create-admin -- "<Admin Name>" admin@example.com "password"')
     process.exit(1)
   }
 
@@ -38,34 +30,29 @@ async function createAdmin() {
     await mongoose.connect(process.env.MONGO_URI)
     console.log('✅ Connected to MongoDB')
 
-    const existing = await User.findOne({ email: email.toLowerCase() })
+    // Prevent using an email that already belongs to a student
+    const studentConflict = await Student.findOne({ email: email.toLowerCase() })
+    if (studentConflict) {
+      console.error('❌ This email is already registered as a student account.')
+      process.exit(1)
+    }
+
+    const existing = await Admin.findOne({ email: email.toLowerCase() })
 
     if (existing) {
-      if (existing.role === 'admin') {
-        console.log('ℹ️  Admin already exists with this email — updating password...')
-        existing.password = password
-        await existing.save()
-        console.log('✅ Admin password updated successfully')
-      } else {
-        console.error(
-          '❌ A student account already uses this email. Choose a different email for the admin.'
-        )
-      }
+      console.log('ℹ️  Admin already exists — updating password...')
+      existing.password = password
+      await existing.save()
+      console.log('✅ Admin password updated successfully')
     } else {
-      const admin = await User.create({
-        name,
-        email,
-        password,
-        role: 'admin',
-      })
-      console.log('✅ Admin account created successfully!')
+      const admin = await Admin.create({ name, email, password })
+      console.log('✅ Admin account created and stored in "admins" collection!')
       console.log(`   Name:  ${admin.name}`)
       console.log(`   Email: ${admin.email}`)
-      console.log(`   Role:  ${admin.role}`)
-      console.log('   You can now log in at the admin login page.')
+      console.log('   You can now log in at the Admin Login tab.')
     }
   } catch (err) {
-    console.error('❌ Failed to create admin:', err.message)
+    console.error('❌ Failed:', err.message)
   } finally {
     await mongoose.disconnect()
     process.exit(0)

@@ -10,6 +10,7 @@ import Complaints from './pages/Complaints'
 import About from './pages/About'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import RegisterAdmin from './pages/RegisterAdmin'
 import StudentDashboard from './pages/StudentDashboard'
 import AdminDashboard from './pages/AdminDashboard'
 import './App.css'
@@ -33,6 +34,7 @@ function AppRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/register-admin" element={<RegisterAdmin />} />
             <Route path="/about" element={<About />} />
 
             {/* Student-only routes */}

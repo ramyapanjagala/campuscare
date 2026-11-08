@@ -1,9 +1,11 @@
 const jwt = require('jsonwebtoken')
-const User = require('../models/User')
+const Student = require('../models/Student')
+const Admin = require('../models/Admin')
 
 /**
  * protect — verifies the Bearer JWT and attaches the authenticated
- * user document to req.user. Rejects requests with no/invalid token.
+ * user document to req.user. Looks in the students collection first,
+ * then the admins collection, so both roles are supported.
  */
 async function protect(req, res, next) {
   let token
@@ -19,10 +21,19 @@ async function protect(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    const user = await User.findById(decoded.id)
+
+    // Look up the user in the correct collection based on the role in the token
+    let user = null
+    if (decoded.role === 'admin') {
+      user = await Admin.findById(decoded.id)
+    } else {
+      user = await Student.findById(decoded.id)
+    }
+
     if (!user) {
       return res.status(401).json({ message: 'Not authorized, user no longer exists' })
     }
+
     req.user = user
     next()
   } catch (err) {

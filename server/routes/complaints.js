@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Complaint = require('../models/Complaint')
-const User = require('../models/User')
+const Student = require('../models/Student')
+const Admin = require('../models/Admin')
 const Notification = require('../models/Notification')
 const { protect, adminOnly } = require('../middleware/authMiddleware')
 
@@ -91,7 +92,7 @@ router.post('/', protect, async (req, res) => {
 
     // Best-effort: notify all admins about the new complaint
     try {
-      const admins = await User.find({ role: 'admin' }).select('_id')
+      const admins = await Admin.find({}).select('_id')
       if (admins.length) {
         await Notification.insertMany(
           admins.map((a) => ({

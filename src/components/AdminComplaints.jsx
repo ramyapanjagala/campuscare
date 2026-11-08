@@ -18,9 +18,10 @@ const priorityBadge = {
  * AdminComplaints — a self-contained panel that lets a Faculty/Admin view
  * every complaint, search/filter them, and open a management modal to review
  * and update a complaint (status, priority, department, staff, remarks,
- * resolution). Used on both the Admin Dashboard and the All Complaints page.
+ * resolution). Calls onComplaintSaved(updatedComplaint) after every save so
+ * parent components (e.g. AdminDashboard) can refresh their stats.
  */
-function AdminComplaints() {
+function AdminComplaints({ onComplaintSaved }) {
   const [complaints, setComplaints] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -71,6 +72,8 @@ function AdminComplaints() {
       prev.map((c) => (c.id === updated.id ? { ...c, ...updated } : c))
     )
     setManagingId(null)
+    // Notify parent so it can refresh stats
+    if (onComplaintSaved) onComplaintSaved(updated)
   }
 
   return (

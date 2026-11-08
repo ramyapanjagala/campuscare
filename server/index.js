@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 5000
 // CORS — allow local dev and the deployed Netlify frontend
 const allowedOrigins = [
   'http://localhost:5173',
+  'http://localhost:5174',
   'https://campus-care-system.netlify.app',
   'https://campuscare-main.netlify.app',
 ]
