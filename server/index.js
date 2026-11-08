@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 5000
 const allowedOrigins = [
   'http://localhost:5173',
   'https://campus-care-system.netlify.app',
+  'https://campuscare-main.netlify.app',
 ]
 
 app.use(
